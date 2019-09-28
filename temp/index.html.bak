@@ -36,13 +36,13 @@
                             <form action="/index" method="POST">
                                 <div class="form-group">
                                     <label for="usr">学号:</label>
-                                    <input name="name" placeholder="请输入你的学号..." type="text" class="form-control" id="usr">
+                                    <input name="name" value="{{ userid }}" placeholder="请输入你的学号..." type="text" class="form-control" id="usr">
                                 </div>
                                 <div class="form-group">
                                     <label for="pwd">密码:</label>
                                     <input name="pwd" placeholder="请输入你的密码..." type="password" class="form-control" id="pwd">
                                 </div>
-                                <button type="submit" class="btn btn-primary btn-block">登录</button>
+                                <button type="submit"  v-on:click="message='登录中...(抢课高峰期教务系统很慢)'"  v-bind:value="message" class="btn btn-primary btn-block"></button>
                                 <button @click="get()" type="button" class="btn btn-primary btn-block">测试键</button>
                             </form>
                         </div>
@@ -127,8 +127,8 @@
                                 {% for i in data['HXkcmc_new'] %}
                                     <tr>
                                         <td>{{ i[0] }}</td>
-                                        <td>{{ i[1] }}</td>
                                         <td>{{ i[2] }}</td>
+                                        <td>{{ i[1] }}</td>
                                     </tr>
                                 {% end %}
                                 </tbody>
@@ -172,6 +172,8 @@
             data: {
                 msg: 'Hello World!',
                 info: 0,
+                message: '登录',
+                
             },
             methods: {
                 get: function () {

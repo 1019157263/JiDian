@@ -101,7 +101,8 @@ class Loginer():
             ppot = r'用户名或密码不正确'
             if re.findall(ppot, self.req.text):
                 print('用户名或密码错误,请查验..')
-                sys.exit()
+                return "密码错误"
+               # sys.exit()
             return self.cookie
         except:
             print('登录失败,请检查网络配置或检查账号密码...')

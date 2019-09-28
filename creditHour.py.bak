@@ -313,7 +313,7 @@ def data_super(name,pwd):
     "HXkcmc_new":HXkcmc_new,
     "HX_computer":HX_computer
     }
-    a.sessions.cookies=""
+    a.sessions.cookies.clear()
     return data_Zall
 '''
 xxx=data_super('16011038025','a1019157263')

@@ -4,12 +4,35 @@
 import tornado.ioloop
 import tornado.web
 from creditHour import *
-
+#from sunny import *
+import time
+'''
+# 为线程定义一个函数
+def job():
+   from sunny import *
+try:
+   thread.start_new_thread(job, () )
+except:
+   print "Error: unable to start thread"
+'''
 
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
-        data={'kcmc_All': [['军事训练', '3.00', '1.0'], ['理论力学', '2.50', '4'], ['机械 设计', '1.00', '4.5'], ['机械设计课程设计', '2.00', '3'], ['机械工程材料B', '2.00', '2.5'], ['机械工程测试技术基础', '4.00', '2'], ['高等数学(二)', '2.00', '5'], ['大学物理(2)', '1.00', '3.0'], ['外语(1)', '2.00', '3'], ['毛泽东思 想和中国特色社会主义理论体系概论2', '2.50', '3'], ['工程制图A', '3.50', '4'], ['抽象艺术学', '3.50', '1'], ['无人机设计导论', '3.50', '1'], ['工程制图A2', '2.00', '1.5'], ['机械原理', '1.50', '4.0'], ['机械原理课程设计', '2.00', '1.0'], ['机电传动控制', '2.50', '3.5'], ['机械制造技术基础A', '2.50', '4'], ['机械优化设计', '4.00', '2'], ['机械创新设计', '2.00', '2'], ['传感器及应用', '2.00', '1.5'], ['机械制造课程设计', '3.00', '2'], ['机械制造装备设计', '2.00', '3.5'], ['数控加工工艺与编程', '3.50', '2'], ['计算机控制', '1.00', '2.5'], ['单片机原理及应用B', '4.00', '3'], ['现代信息查询与利用', '4.00', '1.0'], ['就业指导', '2.00', '0.5'], ['商业广告摄影', '4.00', '1.0'], ['创业学', '3.00', '1.0']], 'computer_all': ['例子', 175.25, 73.0, 2.4006849315068495], 'HXkcmc_All': [['机械设计', '4.5', '1.00'], ['机械工程材料B', '2.5', '2.00'], ['高等数学(二)', '5', '2.00'], ['工程制图A', '4', '3.50'], ['工程制图A', '异常l', 'null'], ['机械原理', '4.0', '1.50'], ['机电传动控制', '3.5', '2.50'], ['机械制造技术基础A', '4', '2.50'], ['机械制造装备设计', '3.5', '2.00']], 'HXkcmc_new': [['机械设计', '1.00', '4.5'], ['机械工程材料B', '2.00', '2.5'], ['高等数学(二)', '2.00', '5'], ['工程制图A', '3.50', '4'], ['机械原理', '1.50', '4.0'], ['机电传动控制', '2.50', '3.5'], ['机械制造技术基础A', '2.50', '4'], ['机械制造装备设计', '2.00', '3.5']], 'HX_computer': ['测试例子', 31.0, 65.25, 2.1048387096774195]}
-        self.render("temp/index.html",userid="",info='{{ info }}',data=data)
+        data = {
+            'kcmc_All': [
+                ['请登录后再查看你的数据', '', ''],
+            ],
+            'computer_all': ['admin', '', '', ''],
+            'HXkcmc_All': [
+                ['请登录后再查看你的数据', '', ''],
+            ],
+            'HXkcmc_new': [
+                ['请登录后再查看你的数据', '', ''],
+            ],
+            'HX_computer': ['admin', '', '', '']
+        }
+
+        self.render("temp/index.html",message="{{ message }}",userid="",info='{{ info }}',data=data)
 
     def post(self):
         username = self.get_argument('name')
@@ -17,7 +40,7 @@ class MainHandler(tornado.web.RequestHandler):
         print(username, password)
         a=data_super(username, password)
         print(a)
-        self.render("temp/index.html", userid=username,info='{{ info }}',data=a)
+        self.render("temp/index.html", message="{{ message }}",userid=username,info='{{ info }}',data=a)
 
 
 application = tornado.web.Application([
@@ -26,5 +49,5 @@ application = tornado.web.Application([
 
 
 if __name__ == "__main__":
-    application.listen(8888)
+    application.listen(8000)
     tornado.ioloop.IOLoop.instance().start()
