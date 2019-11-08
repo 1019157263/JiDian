@@ -42,7 +42,7 @@
                                     <label for="pwd">密码:</label>
                                     <input name="pwd" placeholder="请输入你的密码..." type="password" class="form-control" id="pwd">
                                 </div>
-                                <button type="submit"  v-on:click="message='登录中...(抢课高峰期教务系统很慢)'"  v-bind:value="message" class="btn btn-primary btn-block"></button>
+                                <button type="submit"  v-on:click="message='登录中...(抢课高峰期教务系统很慢)'"  v-bind:value="message" class="btn btn-primary btn-block">{{message}}</button>
                                 <button @click="get()" type="button" class="btn btn-primary btn-block">测试键</button>
                             </form>
                         </div>
